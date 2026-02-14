@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manage Products - Admin Panel</title>
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+
+<body class="bg-light">
+
+    <div class="d-flex">
+        <!-- Sidebar -->
+        <div class="admin-sidebar d-flex flex-column flex-shrink-0 p-3 text-white"
+            style="width: 280px; position: fixed; height: 100vh; overflow-y: auto;">
+            <a href="index.html"
+                class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
+                <span class="fs-4 fw-bold"><i class="fas fa-layer-group me-2"></i>Admin Panel</span>
+            </a>
+            <hr>
+            <ul class="nav nav-pills flex-column mb-auto">
+                <li>
+                    <a href="index.html" class="nav-link text-white">
+                        <i class="fas fa-tachometer-alt me-2"></i> Dashboard
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="products.html" class="nav-link active">
+                        <i class="fas fa-box me-2"></i> Products
+                    </a>
+                </li>
+                <li>
+                    <a href="orders.html" class="nav-link text-white">
+                        <i class="fas fa-shopping-cart me-2"></i> Orders
+                    </a>
+                </li>
+                <li>
+                    <a href="../index.html" class="nav-link text-white" target="_blank">
+                        <i class="fas fa-external-link-alt me-2"></i> View Website
+                    </a>
+                </li>
+            </ul>
+            <hr>
+            <div class="dropdown">
+                <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle"
+                    id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
+                    <img src="https://ui-avatars.com/api/?name=Admin&background=random" alt="" width="32" height="32"
+                        class="rounded-circle me-2">
+                    <strong>Admin</strong>
+                </a>
+                <ul class="dropdown-menu dropdown-menu-dark text-small shadow" aria-labelledby="dropdownUser1">
+                    <li><a class="dropdown-item" href="#" id="logout-btn">Sign out</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="flex-grow-1" style="margin-left: 280px; padding: 20px;">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <h4 class="mb-0">Product Management</h4>
+                <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addProductModal">
+                    <i class="fas fa-plus me-2"></i>Add New Product
+                </button>
+            </div>
+
+            <!-- Products Table -->
+            <div class="card border-0 shadow-sm">
+                <div class="card-body p-0">
+                    <div class="table-responsive">
+                        <table class="table table-hover align-middle mb-0">
+                            <thead class="bg-light">
+                                <tr>
+                                    <th class="ps-4">ID</th>
+                                    <th>Image</th>
+                                    <th>Product Name</th>
+                                    <th>Category</th>
+                                    <th>Price</th>
+                                    <th>Stock</th>
+                                    <th class="pe-4 text-end">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <!-- Example Row -->
+                                <tr>
+                                    <td class="ps-4">1</td>
+                                    <td><img src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=100"
+                                            class="rounded" width="40" height="40" style="object-fit: cover;"></td>
+                                    <td class="fw-bold">Classic White T-Shirt</td>
+                                    <td><span class="badge bg-secondary">Men</span></td>
+                                    <td>Rs. 4,050</td>
+                                    <td><span class="badge bg-success">In Stock</span></td>
+                                    <td class="pe-4 text-end">
+                                        <button class="btn btn-sm btn-outline-primary me-1"><i
+                                                class="fas fa-edit"></i></button>
+                                        <button class="btn btn-sm btn-outline-danger"><i
+                                                class="fas fa-trash"></i></button>
+                                    </td>
+                                </tr>
+                                <!-- More rows would be dynamically generated -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="card-footer bg-white border-top-0 d-flex justify-content-end py-3">
+                    <nav aria-label="Page navigation">
+                        <ul class="pagination pagination-sm mb-0">
+                            <li class="page-item disabled"><a class="page-link" href="#">Previous</a></li>
+                            <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                            <li class="page-item"><a class="page-link" href="#">2</a></li>
+                            <li class="page-item"><a class="page-link" href="#">3</a></li>
+                            <li class="page-item"><a class="page-link" href="#">Next</a></li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Add Product Modal -->
+    <div class="modal fade" id="addProductModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Add New Product</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="add-product-form">
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                <label class="form-label">Product Name</label>
+                                <input type="text" class="form-control" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label">Category</label>
+                                <select class="form-select" required>
+                                    <option value="">Select...</option>
+                                    <option value="men">Men</option>
+                                    <option value="women">Women</option>
+                                    <option value="kids">Kids</option>
+                                    <option value="accessories">Accessories</option>
+                                </select>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label">Price</label>
+                                <input type="number" class="form-control" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label">Old Price</label>
+                                <input type="number" class="form-control">
+                            </div>
+                            <div class="col-12">
+                                <label class="form-label">Description</label>
+                                <textarea class="form-control" rows="3"></textarea>
+                            </div>
+                            <div class="col-12">
+                                <label class="form-label">Image URL</label>
+                                <input type="text" class="form-control" placeholder="https://..." required>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save Product</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Admin JS -->
+    <script src="js/admin.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

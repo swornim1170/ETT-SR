@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Login - StyleHub</title>
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body {
+            background-color: #f0f2f5;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .login-card {
+            width: 100%;
+            max-width: 400px;
+            border: none;
+            border-radius: 1rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        }
+
+        .login-header {
+            background: linear-gradient(135deg, #0d6efd 0%, #0a58ca 100%);
+            color: white;
+            padding: 2rem;
+            border-radius: 1rem 1rem 0 0;
+            text-align: center;
+        }
+
+        .login-body {
+            padding: 2rem;
+            background: white;
+            border-radius: 0 0 1rem 1rem;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="card login-card">
+        <div class="login-header">
+            <h3 class="fw-bold mb-0"><i class="fas fa-lock me-2"></i>Admin Panel</h3>
+            <p class="mb-0 opacity-75">Please login to continue</p>
+        </div>
+        <div class="login-body">
+            <form id="admin-login-form">
+                <div class="mb-3">
+                    <label class="form-label text-muted small fw-bold">USERNAME</label>
+                    <div class="input-group">
+                        <span class="input-group-text bg-light border-end-0"><i
+                                class="fas fa-user text-muted"></i></span>
+                        <input type="text" class="form-control border-start-0 ps-0" id="username"
+                            placeholder="Enter username" required>
+                    </div>
+                </div>
+                <div class="mb-4">
+                    <label class="form-label text-muted small fw-bold">PASSWORD</label>
+                    <div class="input-group">
+                        <span class="input-group-text bg-light border-end-0"><i
+                                class="fas fa-key text-muted"></i></span>
+                        <input type="password" class="form-control border-start-0 ps-0" id="password"
+                            placeholder="Enter password" required>
+                    </div>
+                </div>
+                <div id="login-error" class="alert alert-danger d-none py-2 text-center small mb-3">
+                    Invalid credentials! (Try admin/admin123)
+                </div>
+                <button type="submit" class="btn btn-primary w-100 py-2 fw-bold">LOGIN DASHBOARD</button>
+            </form>
+            <div class="text-center mt-3">
+                <a href="../index.html" class="text-decoration-none small text-muted"><i
+                        class="fas fa-arrow-left me-1"></i> Back to Website</a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('admin-login-form').addEventListener('submit', function (e) {
+            e.preventDefault();
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            const errorDiv = document.getElementById('login-error');
+
+            if (username === 'admin' && password === 'admin123') {
+                localStorage.setItem('adminLoggedIn', 'true');
+                window.location.href = 'index.html';
+            } else {
+                errorDiv.classList.remove('d-none');
+                errorDiv.classList.add('d-block');
+            }
+        });
+    </script>
+</body>
+
+</html>
